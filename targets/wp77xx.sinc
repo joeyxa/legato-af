@@ -9,4 +9,8 @@
 buildVars:
 {
     LEGATO_FWUPDATE_PA_SINGLESYS = ${PA_DIR}/fwupdate/mdm9x06/le_pa_fwupdate_singlesys
+
+    // WP77xx does not supprot IKS, so need always build avcService and secStore apps from source.
+    LEGATO_AVC_SERVICE = ${LEGATO_ROOT}/apps/platformServices/airVantageConnector/avcService
+    LEGATO_SECSTORE_SERVICE = ${LEGATO_ROOT}/apps/platformServices/secStore
 }
