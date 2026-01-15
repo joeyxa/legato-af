@@ -17,10 +17,10 @@
 #define LE_CONFIG_FTPCLIENT_SERVER_NAME_MAX 64 ///< Server hostname/address.
 #endif
 #ifndef LE_CONFIG_FTPCLIENT_USER_NAME_MAX
-#define LE_CONFIG_FTPCLIENT_USER_NAME_MAX 32   ///< User name.
+#define LE_CONFIG_FTPCLIENT_USER_NAME_MAX 64   ///< User name.
 #endif
 #ifndef LE_CONFIG_FTPCLIENT_PASSWORD_MAX
-#define LE_CONFIG_FTPCLIENT_PASSWORD_MAX 32    ///< User's password.
+#define LE_CONFIG_FTPCLIENT_PASSWORD_MAX 64    ///< User's password.
 #endif
 #ifndef LE_CONFIG_FTPCLIENT_BUFFER_SIZE
 #define LE_CONFIG_FTPCLIENT_BUFFER_SIZE 256    ///< Data buffer size
@@ -138,9 +138,9 @@ FtpSessionState_t;
 struct le_ftpClient_Session
 {
     char    srcIpAddr[LE_MDC_IPV6_ADDR_MAX_BYTES];          ///< Source IP address
-    char    serverStr[LE_CONFIG_FTPCLIENT_SERVER_NAME_MAX]; ///< Server hostname/address.
-    char    userStr[LE_CONFIG_FTPCLIENT_USER_NAME_MAX];     ///< User name.
-    char    passwordStr[LE_CONFIG_FTPCLIENT_PASSWORD_MAX];  ///< User's password.
+    char    serverStr[LE_CONFIG_FTPCLIENT_SERVER_NAME_MAX+1]; ///< Server hostname/address.
+    char    userStr[LE_CONFIG_FTPCLIENT_USER_NAME_MAX+1];   ///< User name.
+    char    passwordStr[LE_CONFIG_FTPCLIENT_PASSWORD_MAX+1];///< User's password.
     char    dsAddrStr[LE_CONFIG_FTPCLIENT_SERVER_NAME_MAX]; ///< Data session address.
     uint16_t dsPort;                                        ///< Data session port.
     uint16_t serverPort;                                    ///< Server port.
@@ -2044,19 +2044,22 @@ le_ftpClient_SessionRef_t le_ftpClient_CreateSession
     // Validate the parameters
     if (serverStr == NULL       ||
         serverStr[0] == '\0'    ||
-        strlen(serverStr) >= LE_CONFIG_FTPCLIENT_SERVER_NAME_MAX)
+        strlen(serverStr) > LE_CONFIG_FTPCLIENT_SERVER_NAME_MAX)
     {
-        LE_FATAL("Invalid serverStr.");
+        LE_WARN("Invalid serverStr.");
+        return NULL;
     }
     if (userStr == NULL ||
-        strlen(userStr) >= LE_CONFIG_FTPCLIENT_USER_NAME_MAX)
+        strlen(userStr) > LE_CONFIG_FTPCLIENT_USER_NAME_MAX)
     {
-        LE_FATAL("Invalid userStr.");
+        LE_WARN("Invalid userStr.");
+        return NULL;
     }
     if (passwordStr == NULL ||
-        strlen(passwordStr) >= LE_CONFIG_FTPCLIENT_PASSWORD_MAX)
+        strlen(passwordStr) > LE_CONFIG_FTPCLIENT_PASSWORD_MAX)
     {
-        LE_FATAL("Invalid passwordStr.");
+        LE_WARN("Invalid passwordStr.");
+        return NULL;
     }
 
     // Allocate the session
