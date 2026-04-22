@@ -130,7 +130,7 @@ void createAllSemaphores
     long threadCnt = 0;
     while (threadCnt < ThreadNum)
     {
-        snprintf(threadNameBuffer, MAX_THREAD_NAME_SIZE, "Thread%ld", threadCnt);
+        snprintf(threadNameBuffer, MAX_THREAD_NAME_SIZE, "Thread%d", (int)threadCnt);
 
         // Store the thread references in an array
         ThreadRefArray[threadCnt] = le_thread_Create(threadNameBuffer, ThreadCreateSem, NULL);

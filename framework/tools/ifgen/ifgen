@@ -1,4 +1,4 @@
-#!/usr/bin/python2.7 -E
+#!/usr/bin/python3 -E
 #
 # Code generator main program
 #
@@ -12,6 +12,10 @@ import argparse
 import collections
 import hashlib
 import importlib
+
+# Add the directory containing this script to the Python path
+script_dir = os.path.dirname(os.path.realpath(__file__))
+sys.path.insert(0, script_dir)
 
 # Templating library
 import jinja2
@@ -127,7 +131,7 @@ def AddGeneratedFiles(parser, langPkg):
                         default=False,
                         help='Generate all files')
 
-    for key, value in langPkg.GeneratedFiles.iteritems():
+    for key, value in langPkg.GeneratedFiles.items():
         parser.add_argument('--gen-%s' % (key),
                             dest="gen_%s" %(key.replace('-', '_')),
                             action='store_true',
@@ -158,30 +162,40 @@ def ParseArguments(parser, argList):
     return args
 
 def AddImportsToSet(interface, importSet):
-    for key, value in interface.imports.iteritems():
+    for key, value in interface.imports.items():
         AddImportsToSet(value, importSet)
     importSet[interface.name] = interface
 
 def GetImports(interface):
     """Recursively get all the interfaces an iterface depends on (including itself)"""
     ImportSet=collections.OrderedDict()
-    for key, value in interface.imports.iteritems():
+    for key, value in interface.imports.items():
         AddImportsToSet(value, ImportSet)
 
     return ImportSet.values()
 
 def ImportLangPkg(lang):
+    import importlib
 
     # The name of the package directory has 'lang' prepended to the selected language name
     langDir = 'lang' + lang
 
     # Import the language package, and get the language specific libraries.
     try:
+        # Try to import the module directly using the script directory
         langPkg = importlib.import_module(langDir)
     except ImportError:
-        # Can't find the package to import
-        print >> sys.stderr, "ERROR: language '%s' not available" % langDir
-        sys.exit(1)
+        # If that fails, try to import using the full path
+        try:
+            import importlib.util
+            lang_path = os.path.join(script_dir, langDir, '__init__.py')
+            spec = importlib.util.spec_from_file_location(langDir, lang_path)
+            langPkg = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(langPkg)
+        except Exception as e:
+            # Can't find the package to import
+            print("ERROR: language '%s' not available: %s" % (langDir, str(e)), file=sys.stderr)
+            sys.exit(1)
 
     logging.info("Generating interface glue for language '%s'" % langDir)
 
@@ -199,16 +213,16 @@ def CalcHash(interface):
         hashText = "v3," + repr(interface)
 
     h = hashlib.md5()
-    h.update( hashText )
+    h.update( hashText.encode('utf-8') )
     hashValue = h.hexdigest()
 
     return hashValue, hashText
 
 
 def _TailAllTypes(interface, typeList, seenImports):
-    for typeName, typeItem in interface.types.iteritems():
+    for typeName, typeItem in interface.types.items():
         typeList.append(typeItem)
-    for importName, importItem in interface.imports.iteritems():
+    for importName, importItem in interface.imports.items():
         if importName in seenImports:
             break
         seenImports.append(importName)
@@ -265,7 +279,7 @@ def Main():
     # If we just want the import list, then print it out and exit
     if args.getImportList:
         importInterfaces = GetImports(interface)
-        print "\n".join([interface.path for interface in importInterfaces])
+        print("\n".join([interface.path for interface in importInterfaces]))
         sys.exit(0)
 
     # Calculate the hashValue, as it is always needed
@@ -275,20 +289,19 @@ def Main():
     if args.hash:
         if args.dump:
             # Print out the text used for generating the hash
-            print hashText
+            print(hashText)
         else:
-            print hashValue
+            print(hashValue)
         sys.exit(0)
 
     # Handle the --dump argument here.  No need to generate any code
     if args.dump:
-        print interface
+        print(interface)
         sys.exit(0)
 
     # Set up the jinja2 environment
     TemplateEnvironment = jinja2.Environment(
         loader=jinja2.PackageLoader(langPkg.__name__),
-        extensions=['jinja2.ext.with_'],
         autoescape=False,
         keep_trailing_newline=True
     )
@@ -326,7 +339,7 @@ def Main():
     allTypes = AllTypes(interface)
 
     # Generate requested files from templates
-    for fileType, fileName in langPkg.GeneratedFiles.iteritems():
+    for fileType, fileName in langPkg.GeneratedFiles.items():
         if args.gen_all or getattr(args, 'gen_%s' % ( fileType.replace('-', '_') )):
             if args.outputDir == '-':
                 if args.gen_all:

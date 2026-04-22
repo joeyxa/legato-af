@@ -1,4 +1,4 @@
-#! /usr/bin/python2
+#! /usr/bin/python3
 
 # Copyright (C) Sierra Wireless Inc.
 
@@ -101,48 +101,52 @@ def Help():
     marked_up = os.getenv('MARKUP_HELP_DOX')
     if marked_up:
         #add markup to doc for pretty doxygen formatting
-        print '<!--%s-->' % (marked_up)
+        print('<!--%s-->' % (marked_up))
         lastHeading = None
         for line in __doc__.splitlines():
             match = HeadingRE.match(line)
             if match:
                 if lastHeading == 'verbatim':
-                    print '@endverbatim'
+                    print('@endverbatim')
                 lastHeading = match.group(0)
-                print line.replace(lastHeading, '<h1>%s</h1>' % lastHeading)
+                print(line.replace(lastHeading, '<h1>%s</h1>' % lastHeading))
             else:
                 # don't decorate empy lines (checked by line.strip() is empty)
                 if lastHeading == 'NAME' and line.strip():
-                    print '@b', line
+                    print('@b', line)
                 elif lastHeading == 'SYNOPSIS' and line.strip():
-                    print '<code>', line, '</code><br/>'
+                    print('<code>', line, '</code><br/>')
                 elif lastHeading == 'DESCRIPTION':
-                    print '@verbatim', line
+                    print('@verbatim', line)
                     lastHeading = 'verbatim' # now in verbatim state
                 else:
-                    print line
+                    print(line)
 
         if lastHeading == 'verbatim':
-            print '@endverbatim'
-        print '<hr>'
-        print 'Copyright (C) Sierra Wireless Inc. '
+            print('@endverbatim')
+        print('<hr>')
+        print('Copyright (C) Sierra Wireless Inc. ')
     else:
-        print __doc__
+        print(__doc__)
 
 def FindJson(buffer):
     count = 0
     braceDepth = 0
     for c in buffer:
         count += 1
-        if c == '{':
-            braceDepth += 1
-        if c == '}':
-            braceDepth -= 1
-            if braceDepth == 0:
-                return count
+        if isinstance(buffer, bytes):
+            if c == ord("{"):
+                braceDepth += 1
+            if c == ord("}"):
+                braceDepth -= 1
+        else:
+            if c == "{":
+                braceDepth += 1
+            if c == "}":
+                braceDepth -= 1
+        if braceDepth == 0:
+            return count
     return -1
-
-# returns with a chunk or dies
 def ReadChunk(inBufferedStream):
     chunk = {}
     pBuff = inBufferedStream.peek();
@@ -159,7 +163,7 @@ def ReadChunk(inBufferedStream):
                 jsonLength = FindJson(buffer)
                 if jsonLength < 1:
                     # That's the second try so we are dead.
-                    print 'Error reading json section. No closing brace found'
+                    print('Error reading json section. No closing brace found')
                     exit(1)
                 inStr = buffer[:jsonLength]
                 inBufferedStream.read(jsonLength - previousLen)
@@ -169,7 +173,7 @@ def ReadChunk(inBufferedStream):
         # We keep the original json string because we aren't guaranteed to get
         # it back in the same order after we turn it into an object.
         chunk['header'] = inStr
-        jsonObj = json.loads(inStr)
+        jsonObj = json.loads(inStr.decode("utf-8") if isinstance(inStr, bytes) else inStr)
         chunk['jHead'] = jsonObj
         if 'size' in jsonObj:
             chunk['data'] = inBufferedStream.read(jsonObj['size'])
@@ -194,10 +198,10 @@ def GetSystems(chunkList, fileName):
     # Should be one system per file, no more, no less!
     systems = [x for x in chunkList if x['jHead']['command'] == 'updateSystem']
     if len(systems) < 1:
-        print '%s is not a system update file' % (fileName)
+        print('%s is not a system update file' % (fileName))
         exit(1)
     if len(systems) > 1:
-        print 'Error: %s contains more than one system section' % (fileName)
+        print('Error: %s contains more than one system section' % (fileName))
         exit(1)
     return systems
 
@@ -262,12 +266,12 @@ def TarList(chunk, chunkNameList):
     modifySystemChunk(chunk)
     if len(args.segList) == 0 or ('name' in chunk['jHead'] and chunk['jHead']['name'] in args.segList):
         if chunk['jHead']['size'] > 1:
-            print chunk['header']
+            print(chunk['header'])
             file_like_object = io.BytesIO(chunk['data'])
             tar = tarfile.open(fileobj=file_like_object)
             # use "tar" as a regular TarFile object
             for info in tar:
-                print 'file %s, size %d' % (info.name, info.size)
+                print('file %s, size %d' % (info.name, info.size))
             tar.close()
 
 def CreateExtractDirName(args, chunk):
@@ -297,7 +301,7 @@ def ExtractList(chunk, chunkNameList):
     if len(args.unpackList) == 0 or ('name' in chunk['jHead'] and chunk['jHead']['name'] in args.unpackList):
         # the system is a special case - ignoring it until I have a solution
         if chunk['jHead']['size'] > 1:
-            print chunk['header']
+            print(chunk['header'])
             file_like_object = io.BytesIO(chunk['data'])
             tar = tarfile.open(fileobj=file_like_object)
             extractDirName = CreateExtractDirName(args, chunk)
@@ -305,12 +309,12 @@ def ExtractList(chunk, chunkNameList):
                 os.makedirs(extractDirName)
             except OSError as err:
                 if err.errno == errno.EEXIST:
-                    print "Destination directory '%s' exists. Remove it and try again." % (extractDirName)
+                    print("Destination directory '%s' exists. Remove it and try again.") % (extractDirName)
                     exit (1)
                 else:
                     raise
 
-            tar.extractall(extractDirName)
+            tar.extractall(extractDirName.decode("utf-8") if isinstance(extractDirName, bytes) else extractDirName)
             tar.close()
 
 def ProcessHeaders(args):
@@ -322,11 +326,11 @@ def ProcessHeaders(args):
             ExtractList(chunk, args.unpackList)
         elif args.terse:
             if 'command' in chunk['jHead'] and chunk['jHead']['command'] == 'updateSystem':
-                print 'system'
+                print('system')
             if 'name' in chunk['jHead']:
-                print chunk['jHead']['name']
+                print( chunk['jHead']['name'])
         else:
-            print chunk['header']
+            print(chunk['header'])
 
 parser = argparse.ArgumentParser('update-util')
 parser.add_argument('files', nargs='+')

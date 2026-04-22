@@ -12,7 +12,7 @@
 
 import os
 import interfaceIR
-from jinja2 import contextfilter, environmentfilter
+from jinja2 import pass_context, pass_environment
 
 #---------------------------------------------------------------------------------------------------
 # Global objects used by the C API
@@ -253,7 +253,7 @@ def FormatParameterPtr(parameter):
         # Everything else needs to have its address taken
         return "&" + FormatParameterName(parameter)
 
-@environmentfilter
+@pass_environment
 def FormatParameter(env, parameter, forceInput=False, useBaseName=False):
     if isinstance(parameter, interfaceIR.StringParameter):
         return ((u"const " if forceInput or parameter.direction == interfaceIR.DIR_IN else u"") +
@@ -321,7 +321,7 @@ _PackFunctionMapping = {
     interfaceIR.ONOFF_TYPE:  "le_pack_%sOnOff",
 }
 
-@contextfilter
+@pass_context
 def GetPackFunction(context, apiType):
     if isinstance(apiType, interfaceIR.ReferenceType):
         return "le_pack_PackReference"
@@ -332,7 +332,7 @@ def GetPackFunction(context, apiType):
     else:
         return _PackFunctionMapping[apiType] % ("Pack", )
 
-@contextfilter
+@pass_context
 def GetUnpackFunction(context, apiType):
     if isinstance(apiType, interfaceIR.ReferenceType):
         return "le_pack_UnpackReference"
@@ -344,7 +344,7 @@ def GetUnpackFunction(context, apiType):
         return _PackFunctionMapping[apiType] % ("Unpack", )
 
 def EscapeString(string):
-    return string.encode('string_escape').replace('"', '\\"')
+    return string.encode('unicode_escape').decode('latin-1').replace('"', '\\"')
 
 
 def OptimizableArray(parameter):

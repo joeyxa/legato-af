@@ -6,13 +6,7 @@
 #*******************************************************************************
 
 mkapp(testAppInfo.adef
-      -i ${LEGATO_ROOT}/interfaces/supervisor
-      DEPENDS
-            ## TODO: Remove all this when the mk tools do dependency checking.
-            ../*
-            getAppInfo/*
-            ${LEGATO_ROOT}/interfaces/supervisor/*
-            testAppInfo.adef )
+      -i ${LEGATO_ROOT}/interfaces/supervisor)
 
 # This is a C test
 add_dependencies(tests_c testAppInfo)

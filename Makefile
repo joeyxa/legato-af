@@ -696,7 +696,7 @@ coverage_report:
 # Depends on the build directory being there.
 # NOTE: CMake is only used to build tests and samples.
 build/$(TARGET)/Makefile:
-	export PATH=$(TOOLCHAIN_DIR):$(PATH) && cd `dirname $@` && \
+	export PATH="$(TOOLCHAIN_DIR):$(PATH)" && cd `dirname $@` && \
 		cmake ../.. \
 			-DLEGATO_ROOT=$(LEGATO_ROOT) \
 			-DLEGATO_TARGET=$(TARGET) \

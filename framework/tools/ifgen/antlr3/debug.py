@@ -29,7 +29,7 @@
 # end[licence]
 
 import socket
-from antlr3 import Parser, TokenStream, RecognitionException, Token
+from .antlr3 import Parser, TokenStream, RecognitionException, Token
 from antlr3.tree import CommonTreeAdaptor, TreeAdaptor, Tree
 
 class DebugParser(Parser):

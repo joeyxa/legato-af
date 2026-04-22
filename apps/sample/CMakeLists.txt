@@ -89,7 +89,6 @@ if (NOT (LEGATO_TARGET STREQUAL "ar7" OR LEGATO_TARGET STREQUAL "ar86" OR LEGATO
 endif()
 
 # DataHub sample app
-add_subdirectory(dataHub)
 
 # DataHub GPS sample app
 add_subdirectory(datahubGps)

@@ -210,7 +210,7 @@ void createAllTimers
     long threadCnt = 0;
     while (threadCnt < ThreadNum)
     {
-        snprintf(threadNameBuffer, MAX_THREAD_NAME_SIZE, "Thread%ld", threadCnt);
+        snprintf(threadNameBuffer, MAX_THREAD_NAME_SIZE, "Thread%d", (int)threadCnt);
 
         // Spread timers evenly among the threads, and put the remaining timers in the last thread.
         timerPerThread = (threadCnt == (ThreadNum - 1)) ? (quotient + remainder) : quotient;

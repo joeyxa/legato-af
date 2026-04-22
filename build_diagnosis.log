@@ -1,0 +1,128 @@
+===== Legato Build Diagnostic Script =====
+Date: Fri Apr 10 11:49:56 CST 2026
+
+=== 1. Python Environment ===
+Python 3.12.3
+jinja2 OK
+git OK
+
+=== 2. ifgen Script Check ===
+#!/usr/bin/python3 -E
+  File "/home/zhaoming/legato/bin/ifgen", line 268
+    print "\n".join([interface.path for interface in importInterfaces])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
+ifgen failed
+
+=== 3. Build Status ===
+Build directory exists
+total 20
+drwxr-xr-x  5 root     root     4096 Apr 10 11:47 .
+drwxr-xr-x 18 zhaoming zhaoming 4096 Apr 10 11:49 ..
+drwxr-xr-x  2 root     root     4096 Apr 10 11:47 doc
+drwxr-xr-x  4 root     root     4096 Apr 10 11:47 localhost
+drwxr-xr-x  5 root     root     4096 Apr 10 11:47 tools
+
+=== 4. Attempt Build ===
+Cleaning...
+  CLEAN     
+    print "\n".join([interface.path for interface in importInterfaces])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
+[4/55] Generating IPC interface code
+FAILED: /home/zhaoming/legato/build/localhost/framework/supervisor/api/eb6afdf8ba42ce6edded42690675c091/client/le_instStat_client.c /home/zhaoming/legato/build/localhost/framework/supervisor/api/eb6afdf8ba42ce6edded42690675c091/client/le_instStat_commonclient.c /home/zhaoming/legato/build/localhost/framework/supervisor/api/eb6afdf8ba42ce6edded42690675c091/client/le_instStat_interface.h /home/zhaoming/legato/build/localhost/framework/supervisor/api/eb6afdf8ba42ce6edded42690675c091/client/le_instStat_service.h 
+ifgen --output-dir /home/zhaoming/legato/build/localhost/framework/supervisor/api/eb6afdf8ba42ce6edded42690675c091/client --gen-client --gen-common-client --gen-interface --gen-local --name-prefix le_instStat --import-dir /home/zhaoming/legato/interfaces --import-dir /home/zhaoming/legato/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/framework/liblegato --import-dir /home/zhaoming/legato/framework/liblegato/linux --import-dir /home/zhaoming/legato/interfaces/supervisor --import-dir /home/zhaoming/legato/framework/daemons/linux/start --import-dir /home/zhaoming/legato/framework/daemons/linux/common --import-dir /home/zhaoming/legato/interfaces/platformLimits --import-dir . /home/zhaoming/legato/interfaces/le_instStat.api
+  File "/home/zhaoming/legato/bin/ifgen", line 268
+    print "\n".join([interface.path for interface in importInterfaces])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
+[5/55] Generating IPC interface code
+FAILED: /home/zhaoming/legato/build/localhost/framework/supervisor/api/acd84bb242bfbacde67f1525b4f688d4/client/le_cfg_client.c /home/zhaoming/legato/build/localhost/framework/supervisor/api/acd84bb242bfbacde67f1525b4f688d4/client/le_cfg_commonclient.c /home/zhaoming/legato/build/localhost/framework/supervisor/api/acd84bb242bfbacde67f1525b4f688d4/client/le_cfg_interface.h /home/zhaoming/legato/build/localhost/framework/supervisor/api/acd84bb242bfbacde67f1525b4f688d4/client/le_cfg_service.h 
+ifgen --output-dir /home/zhaoming/legato/build/localhost/framework/supervisor/api/acd84bb242bfbacde67f1525b4f688d4/client --gen-client --gen-common-client --gen-interface --gen-local --name-prefix le_cfg --import-dir /home/zhaoming/legato/interfaces --import-dir /home/zhaoming/legato/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/framework/liblegato --import-dir /home/zhaoming/legato/framework/liblegato/linux --import-dir /home/zhaoming/legato/interfaces/supervisor --import-dir /home/zhaoming/legato/framework/daemons/linux/start --import-dir /home/zhaoming/legato/framework/daemons/linux/common --import-dir /home/zhaoming/legato/interfaces/platformLimits --import-dir . /home/zhaoming/legato/interfaces/le_cfg.api
+  File "/home/zhaoming/legato/bin/ifgen", line 268
+    print "\n".join([interface.path for interface in importInterfaces])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
+[6/55] Generating IPC interface code
+FAILED: /home/zhaoming/legato/build/localhost/framework/supervisor/api/a56e2653d03f56106da37789fcb26bf8/le_appCtrl_common.h /home/zhaoming/legato/build/localhost/framework/supervisor/api/a56e2653d03f56106da37789fcb26bf8/le_appCtrl_messages.h 
+ifgen --output-dir /home/zhaoming/legato/build/localhost/framework/supervisor/api/a56e2653d03f56106da37789fcb26bf8 --gen-common-interface --gen-messages --import-dir /home/zhaoming/legato/interfaces --import-dir /home/zhaoming/legato/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/framework/liblegato --import-dir /home/zhaoming/legato/framework/liblegato/linux --import-dir /home/zhaoming/legato/interfaces/supervisor --import-dir /home/zhaoming/legato/framework/daemons/linux/start --import-dir /home/zhaoming/legato/framework/daemons/linux/common --import-dir /home/zhaoming/legato/interfaces/platformLimits --import-dir . /home/zhaoming/legato/interfaces/le_appCtrl.api
+  File "/home/zhaoming/legato/bin/ifgen", line 268
+    print "\n".join([interface.path for interface in importInterfaces])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
+[7/55] Generating IPC interface code
+FAILED: /home/zhaoming/legato/build/localhost/framework/supervisor/api/4ba2e078c7f8a27e3d305784b64e9f27/le_limit_common.h 
+ifgen --output-dir /home/zhaoming/legato/build/localhost/framework/supervisor/api/4ba2e078c7f8a27e3d305784b64e9f27 --gen-common-interface --import-dir /home/zhaoming/legato/interfaces --import-dir /home/zhaoming/legato/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/framework/liblegato --import-dir /home/zhaoming/legato/framework/liblegato/linux --import-dir /home/zhaoming/legato/interfaces/supervisor --import-dir /home/zhaoming/legato/framework/daemons/linux/start --import-dir /home/zhaoming/legato/framework/daemons/linux/common --import-dir /home/zhaoming/legato/interfaces/platformLimits --import-dir . /home/zhaoming/legato/interfaces/le_limit.api
+  File "/home/zhaoming/legato/bin/ifgen", line 268
+    print "\n".join([interface.path for interface in importInterfaces])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
+[8/55] Generating IPC interface code
+FAILED: /home/zhaoming/legato/build/localhost/framework/supervisor/api/a56e2653d03f56106da37789fcb26bf8/async_server/le_appCtrl_server.c /home/zhaoming/legato/build/localhost/framework/supervisor/api/a56e2653d03f56106da37789fcb26bf8/async_server/le_appCtrl_server.h /home/zhaoming/legato/build/localhost/framework/supervisor/api/a56e2653d03f56106da37789fcb26bf8/async_server/le_appCtrl_service.h 
+ifgen --output-dir /home/zhaoming/legato/build/localhost/framework/supervisor/api/a56e2653d03f56106da37789fcb26bf8/async_server --gen-server --gen-server-interface --gen-local --async-server --name-prefix le_appCtrl --import-dir /home/zhaoming/legato/interfaces --import-dir /home/zhaoming/legato/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/framework/liblegato --import-dir /home/zhaoming/legato/framework/liblegato/linux --import-dir /home/zhaoming/legato/interfaces/supervisor --import-dir /home/zhaoming/legato/framework/daemons/linux/start --import-dir /home/zhaoming/legato/framework/daemons/linux/common --import-dir /home/zhaoming/legato/interfaces/platformLimits --import-dir . /home/zhaoming/legato/interfaces/le_appCtrl.api
+  File "/home/zhaoming/legato/bin/ifgen", line 268
+    print "\n".join([interface.path for interface in importInterfaces])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
+[9/55] Generating IPC interface code
+FAILED: /home/zhaoming/legato/build/localhost/framework/supervisor/api/4ba2e078c7f8a27e3d305784b64e9f27/client/le_limit_interface.h 
+ifgen --output-dir /home/zhaoming/legato/build/localhost/framework/supervisor/api/4ba2e078c7f8a27e3d305784b64e9f27/client --gen-interface --import-dir /home/zhaoming/legato/interfaces --import-dir /home/zhaoming/legato/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/framework/liblegato --import-dir /home/zhaoming/legato/framework/liblegato/linux --import-dir /home/zhaoming/legato/interfaces/supervisor --import-dir /home/zhaoming/legato/framework/daemons/linux/start --import-dir /home/zhaoming/legato/framework/daemons/linux/common --import-dir /home/zhaoming/legato/interfaces/platformLimits --import-dir . /home/zhaoming/legato/interfaces/le_limit.api
+  File "/home/zhaoming/legato/bin/ifgen", line 268
+    print "\n".join([interface.path for interface in importInterfaces])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
+[10/55] Generating IPC interface code
+FAILED: /home/zhaoming/legato/build/localhost/framework/supervisor/api/bb7df177711ab31834b767927af35ef0/logFd_common.h /home/zhaoming/legato/build/localhost/framework/supervisor/api/bb7df177711ab31834b767927af35ef0/logFd_messages.h 
+ifgen --output-dir /home/zhaoming/legato/build/localhost/framework/supervisor/api/bb7df177711ab31834b767927af35ef0 --gen-common-interface --gen-messages --import-dir /home/zhaoming/legato/interfaces --import-dir /home/zhaoming/legato/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/framework/liblegato --import-dir /home/zhaoming/legato/framework/liblegato/linux --import-dir /home/zhaoming/legato/interfaces/supervisor --import-dir /home/zhaoming/legato/framework/daemons/linux/start --import-dir /home/zhaoming/legato/framework/daemons/linux/common --import-dir /home/zhaoming/legato/interfaces/platformLimits --import-dir . /home/zhaoming/legato/interfaces/logDaemon/logFd.api
+  File "/home/zhaoming/legato/bin/ifgen", line 268
+    print "\n".join([interface.path for interface in importInterfaces])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
+[11/55] Generating IPC interface code
+FAILED: /home/zhaoming/legato/build/localhost/framework/supervisor/api/acd84bb242bfbacde67f1525b4f688d4/le_cfg_common.h /home/zhaoming/legato/build/localhost/framework/supervisor/api/acd84bb242bfbacde67f1525b4f688d4/le_cfg_messages.h 
+ifgen --output-dir /home/zhaoming/legato/build/localhost/framework/supervisor/api/acd84bb242bfbacde67f1525b4f688d4 --gen-common-interface --gen-messages --import-dir /home/zhaoming/legato/interfaces --import-dir /home/zhaoming/legato/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/framework/liblegato --import-dir /home/zhaoming/legato/framework/liblegato/linux --import-dir /home/zhaoming/legato/interfaces/supervisor --import-dir /home/zhaoming/legato/framework/daemons/linux/start --import-dir /home/zhaoming/legato/framework/daemons/linux/common --import-dir /home/zhaoming/legato/interfaces/platformLimits --import-dir . /home/zhaoming/legato/interfaces/le_cfg.api
+  File "/home/zhaoming/legato/bin/ifgen", line 268
+    print "\n".join([interface.path for interface in importInterfaces])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
+[12/55] Generating IPC interface code
+FAILED: /home/zhaoming/legato/build/localhost/framework/supervisor/api/4ba2e078c7f8a27e3d305784b64e9f27/server/le_limit_server.h 
+ifgen --output-dir /home/zhaoming/legato/build/localhost/framework/supervisor/api/4ba2e078c7f8a27e3d305784b64e9f27/server --gen-server-interface --import-dir /home/zhaoming/legato/interfaces --import-dir /home/zhaoming/legato/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/framework/liblegato --import-dir /home/zhaoming/legato/framework/liblegato/linux --import-dir /home/zhaoming/legato/interfaces/supervisor --import-dir /home/zhaoming/legato/framework/daemons/linux/start --import-dir /home/zhaoming/legato/framework/daemons/linux/common --import-dir /home/zhaoming/legato/interfaces/platformLimits --import-dir . /home/zhaoming/legato/interfaces/le_limit.api
+  File "/home/zhaoming/legato/bin/ifgen", line 268
+    print "\n".join([interface.path for interface in importInterfaces])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
+[13/55] Generating IPC interface code
+FAILED: /home/zhaoming/legato/build/localhost/framework/supervisor/api/eb6afdf8ba42ce6edded42690675c091/le_instStat_common.h /home/zhaoming/legato/build/localhost/framework/supervisor/api/eb6afdf8ba42ce6edded42690675c091/le_instStat_messages.h 
+ifgen --output-dir /home/zhaoming/legato/build/localhost/framework/supervisor/api/eb6afdf8ba42ce6edded42690675c091 --gen-common-interface --gen-messages --import-dir /home/zhaoming/legato/interfaces --import-dir /home/zhaoming/legato/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/framework/liblegato --import-dir /home/zhaoming/legato/framework/liblegato/linux --import-dir /home/zhaoming/legato/interfaces/supervisor --import-dir /home/zhaoming/legato/framework/daemons/linux/start --import-dir /home/zhaoming/legato/framework/daemons/linux/common --import-dir /home/zhaoming/legato/interfaces/platformLimits --import-dir . /home/zhaoming/legato/interfaces/le_instStat.api
+  File "/home/zhaoming/legato/bin/ifgen", line 268
+    print "\n".join([interface.path for interface in importInterfaces])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
+[14/55] Generating IPC interface code
+FAILED: /home/zhaoming/legato/build/localhost/framework/supervisor/api/bb7df177711ab31834b767927af35ef0/client/logFd_client.c /home/zhaoming/legato/build/localhost/framework/supervisor/api/bb7df177711ab31834b767927af35ef0/client/logFd_commonclient.c /home/zhaoming/legato/build/localhost/framework/supervisor/api/bb7df177711ab31834b767927af35ef0/client/logFd_interface.h /home/zhaoming/legato/build/localhost/framework/supervisor/api/bb7df177711ab31834b767927af35ef0/client/logFd_service.h 
+ifgen --output-dir /home/zhaoming/legato/build/localhost/framework/supervisor/api/bb7df177711ab31834b767927af35ef0/client --gen-client --gen-common-client --gen-interface --gen-local --name-prefix logFd --import-dir /home/zhaoming/legato/interfaces --import-dir /home/zhaoming/legato/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/framework/liblegato --import-dir /home/zhaoming/legato/framework/liblegato/linux --import-dir /home/zhaoming/legato/interfaces/supervisor --import-dir /home/zhaoming/legato/framework/daemons/linux/start --import-dir /home/zhaoming/legato/framework/daemons/linux/common --import-dir /home/zhaoming/legato/interfaces/platformLimits --import-dir . /home/zhaoming/legato/interfaces/logDaemon/logFd.api
+  File "/home/zhaoming/legato/bin/ifgen", line 268
+    print "\n".join([interface.path for interface in importInterfaces])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
+[15/55] Generating IPC interface code
+FAILED: /home/zhaoming/legato/build/localhost/framework/supervisor/api/ce3492c03da840b8c4b93443e86617e3/async_server/le_framework_server.c /home/zhaoming/legato/build/localhost/framework/supervisor/api/ce3492c03da840b8c4b93443e86617e3/async_server/le_framework_server.h /home/zhaoming/legato/build/localhost/framework/supervisor/api/ce3492c03da840b8c4b93443e86617e3/async_server/le_framework_service.h 
+ifgen --output-dir /home/zhaoming/legato/build/localhost/framework/supervisor/api/ce3492c03da840b8c4b93443e86617e3/async_server --gen-server --gen-server-interface --gen-local --async-server --name-prefix le_framework --import-dir /home/zhaoming/legato/interfaces --import-dir /home/zhaoming/legato/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/framework/liblegato --import-dir /home/zhaoming/legato/framework/liblegato/linux --import-dir /home/zhaoming/legato/interfaces/supervisor --import-dir /home/zhaoming/legato/framework/daemons/linux/start --import-dir /home/zhaoming/legato/framework/daemons/linux/common --import-dir /home/zhaoming/legato/interfaces/platformLimits --import-dir . /home/zhaoming/legato/interfaces/le_framework.api
+  File "/home/zhaoming/legato/bin/ifgen", line 268
+    print "\n".join([interface.path for interface in importInterfaces])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
+[16/55] Generating IPC interface code
+FAILED: /home/zhaoming/legato/build/localhost/framework/supervisor/api/7d3ceae5c91730f8a256e0e60b8ab42a/wdog_common.h /home/zhaoming/legato/build/localhost/framework/supervisor/api/7d3ceae5c91730f8a256e0e60b8ab42a/wdog_messages.h 
+ifgen --output-dir /home/zhaoming/legato/build/localhost/framework/supervisor/api/7d3ceae5c91730f8a256e0e60b8ab42a --gen-common-interface --gen-messages --import-dir /home/zhaoming/legato/interfaces --import-dir /home/zhaoming/legato/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/build/localhost/framework/include --import-dir /home/zhaoming/legato/framework/liblegato --import-dir /home/zhaoming/legato/framework/liblegato/linux --import-dir /home/zhaoming/legato/interfaces/supervisor --import-dir /home/zhaoming/legato/framework/daemons/linux/start --import-dir /home/zhaoming/legato/framework/daemons/linux/common --import-dir /home/zhaoming/legato/interfaces/platformLimits --import-dir . /home/zhaoming/legato/interfaces/supervisor/wdog.api
+  File "/home/zhaoming/legato/bin/ifgen", line 268
+    print "\n".join([interface.path for interface in importInterfaces])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
+ninja: build stopped: subcommand failed.
+make[2]: *** [Makefile.framework:341: /home/zhaoming/legato/build/localhost/framework/bin/supervisor] Error 1
+make[2]: Leaving directory '/home/zhaoming/legato'
+make[1]: *** [Makefile:566: framework] Error 2
+make[1]: Leaving directory '/home/zhaoming/legato'
+make: *** [Makefile:484: default] Error 2

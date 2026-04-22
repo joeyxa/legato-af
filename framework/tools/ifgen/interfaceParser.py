@@ -12,7 +12,7 @@ import interfaceIR
 from interfaceLexer import interfaceLexer
 
 def UnquoteString(quotedString):
-    return quotedString[1:-1].decode('string_escape')
+    return quotedString[1:-1].encode('latin-1').decode('unicode_escape')
 
 def StripPostComment(comment):
     return comment[4:]
@@ -256,7 +256,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -316,7 +316,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -407,7 +407,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -480,14 +480,14 @@ class interfaceParser(Parser):
 
 
 
-            except KeyError, e:
+            except KeyError as e:
 
                 self.emitErrorMessage(self.getErrorHeaderForToken(retval.start) +
                                       " No definition for {}".format(self.input.toString(retval.start, self.input.LT(-1))))
                 self.compileErrors += 1
 
 
-            except TypeError, e:
+            except TypeError as e:
 
                 self.emitErrorMessage(self.getErrorHeaderForToken(retval.start) +
                                       " {} is not an integer definition".format(self.input.toString(retval.start, self.input.LT(-1))))
@@ -570,7 +570,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -656,7 +656,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -743,7 +743,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -830,7 +830,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -893,7 +893,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -1035,7 +1035,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -1081,7 +1081,7 @@ class interfaceParser(Parser):
 
                     try:
                         typeObj = self.iface.findType(IDENTIFIER17.text)
-                    except KeyError, e:
+                    except KeyError as e:
                         self.compileErrors += 1
                         self.emitErrorMessage(self.getErrorHeaderForToken(IDENTIFIER17) +
                                               " Unknown type {}".format(e))
@@ -1100,7 +1100,7 @@ class interfaceParser(Parser):
 
                     try:
                         typeObj = self.iface.findType(SCOPED_IDENTIFIER18.text)
-                    except KeyError, e:
+                    except KeyError as e:
                         self.compileErrors += 1
                         self.emitErrorMessage(self.getErrorHeaderForToken(SCOPED_IDENTIFIER18) +
                                               " Unknown type {}".format(e))
@@ -1111,7 +1111,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -1168,7 +1168,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -1203,7 +1203,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -1254,7 +1254,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -1320,7 +1320,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -1402,7 +1402,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -1455,7 +1455,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -1508,7 +1508,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -1550,7 +1550,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -1630,7 +1630,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -1694,7 +1694,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -1759,7 +1759,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -1856,7 +1856,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -1931,7 +1931,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -2024,7 +2024,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -2093,7 +2093,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -2162,7 +2162,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -2329,7 +2329,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
 
                 # Report recognition exceptions here with default handling.  Do not want them to get caught
                 # by generic handler below
@@ -2337,7 +2337,7 @@ class interfaceParser(Parser):
                 self.recover(self.input, re)
 
 
-            except Exception, e:
+            except Exception as e:
 
                 self.emitErrorMessage(self.getErrorHeaderForToken(self.getCurrentInputSymbol(self.input))
                                       + " " + str(e))
@@ -2389,7 +2389,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -2449,7 +2449,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -2497,7 +2497,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 
@@ -2689,7 +2689,7 @@ class interfaceParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException as re:
                 self.reportError(re)
                 self.recover(self.input, re)
 

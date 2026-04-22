@@ -10,15 +10,15 @@ apps:
     #if ${LE_CONFIG_APP_AVC_LEGACY} = y
         ${LEGATO_ROOT}/apps/platformServices/airVantage/avcService
     #elif ${LE_CONFIG_APP_AVC_LWM2MCORE} = y
-        ${LEGATO_ROOT}/apps/platformServices/airVantageConnector/avcService
-#if ${LE_CONFIG_AVC_FEATURE_FILETRANSFER} = y
-        ${LEGATO_ROOT}/apps/platformServices/fileStreamService
-#endif
-        #if ${LEGATO_TARGET} = wp750x
-            ${LEGATO_ROOT}/apps/platformServices/airVantage/avcCompat
-        #elif ${LEGATO_TARGET} = wp85
-            ${LEGATO_ROOT}/apps/platformServices/airVantage/avcCompat
-        #endif
+        // ${LEGATO_ROOT}/apps/platformServices/airVantageConnector/avcService
+        // #if ${LE_CONFIG_AVC_FEATURE_FILETRANSFER} = y
+        //     ${LEGATO_ROOT}/apps/platformServices/fileStreamService
+        // #endif
+        // #if ${LEGATO_TARGET} = wp750x
+        //     ${LEGATO_ROOT}/apps/platformServices/airVantage/avcCompat
+        // #elif ${LEGATO_TARGET} = wp85
+        //     ${LEGATO_ROOT}/apps/platformServices/airVantage/avcCompat
+        // #endif
     #endif
         ${LEGATO_ROOT}/apps/platformServices/powerService
 }

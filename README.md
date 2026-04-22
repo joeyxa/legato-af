@@ -43,11 +43,10 @@ $ sudo apt-get install -y   \
     libtool                 \
     libxml2-utils           \
     ninja-build             \
-    python                  \
-    python-git              \
-    python-jinja2           \
-    python-pkg-resources    \
     python3                 \
+    python3-git             \
+    python3-jinja2          \
+    python3-pkg-resources   \\
     texinfo                 \
     unzip                   \
     wget                    \

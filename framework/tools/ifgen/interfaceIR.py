@@ -718,8 +718,8 @@ class Interface(object):
     def __repr__(self):
         return "<Interface Imports:[{}] Definitions:[{}] Types:[{}] Functions:[{}] Events:[{}]>"\
             .format(
-                ','.join([repr(apiImport) for apiImport in self.imports.itervalues()]),
-                ','.join([repr(definition) for definition in self.definitions.itervalues()]),
-                ','.join([repr(apiType) for apiType in self.types.itervalues()]),
-                ','.join([repr(function) for function in self.functions.itervalues()]),
-                ','.join([repr(event) for event in self.events.itervalues()]))
+                ','.join([repr(apiImport) for apiImport in self.imports.values()]),
+                ','.join([repr(definition) for definition in self.definitions.values()]),
+                ','.join([repr(apiType) for apiType in self.types.values()]),
+                ','.join([repr(function) for function in self.functions.values()]),
+                ','.join([repr(event) for event in self.events.values()]))

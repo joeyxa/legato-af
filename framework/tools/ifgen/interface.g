@@ -321,7 +321,7 @@ typeIdentifier returns [typeObj]
         {
             try:
                 $typeObj = self.iface.findType($IDENTIFIER.text)
-            except KeyError, e:
+            except KeyError as e:
                 self.compileErrors += 1
                 self.emitErrorMessage(self.getErrorHeaderForToken($IDENTIFIER) +
                                       " Unknown type {}".format(e))
@@ -331,7 +331,7 @@ typeIdentifier returns [typeObj]
         {
             try:
                 $typeObj = self.iface.findType($SCOPED_IDENTIFIER.text)
-            except KeyError, e:
+            except KeyError as e:
                 self.compileErrors += 1
                 self.emitErrorMessage(self.getErrorHeaderForToken($SCOPED_IDENTIFIER) +
                                       " Unknown type {}".format(e))
